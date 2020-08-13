@@ -21,7 +21,6 @@ import {
   MenuTransition,
 } from "../src"
 import { Button } from "@chakra-ui/button"
-import { Avatar } from "@chakra-ui/avatar"
 
 const words = [
   "About Visual Studio Code",
@@ -178,7 +177,7 @@ export const withMenuRadio = () => (
 
       <MenuDivider />
 
-      <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
+      <MenuOptionGroup defaultValue="val-1" title="Order" type="radio">
         <MenuItemOption value="val-1">Option 1</MenuItemOption>
         <MenuItemOption value="val-2">Option 2</MenuItemOption>
       </MenuOptionGroup>
