@@ -13,8 +13,8 @@ const sidebar = {
           path: "/guides/z-index",
         },
         {
-          title: "Nextjs Optimization",
-          path: "/guides/nextjs-optimization",
+          title: "The as prop",
+          path: "/guides/as-prop",
         },
         {
           title: "Integrations",

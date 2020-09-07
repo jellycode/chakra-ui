@@ -1,16 +1,40 @@
 import React from "react"
 import * as Chakra from "@chakra-ui/core"
+import { chakra } from "@chakra-ui/core"
 import * as Icons from "@chakra-ui/icons"
 import * as Formik from "formik"
 import FocusLock from "react-focus-lock"
-import * as IOIcons from "react-icons/ai"
-import * as FaIcons from "react-icons/fa"
-import * as MDIcons from "react-icons/md"
+import {
+  MdSettings,
+  MdReceipt,
+  MdGroupWork,
+  MdCheckCircle,
+  MdGraphicEq,
+  MdBuild,
+  MdCall,
+  MdPhone,
+  MdArrowDropDown,
+} from "react-icons/md"
+import { AiOutlineUser } from "react-icons/ai"
+import { FaFacebook, FaTwitter } from "react-icons/fa"
 import Lorem from "react-lorem-component"
 import * as Loaders from "react-spinners"
 import CircleIcon from "../docs/icon"
 
-import { chakra } from "@chakra-ui/core"
+const reactIcons = {
+  MdSettings,
+  MdReceipt,
+  MdGroupWork,
+  MdCheckCircle,
+  MdGraphicEq,
+  MdBuild,
+  MdCall,
+  MdPhone,
+  MdArrowDropDown,
+  AiOutlineUser,
+  FaFacebook,
+  FaTwitter,
+}
 
 const StarIcon = (props) => (
   <chakra.svg m="2px" fill="current" boxSize="3" viewBox="0 0 24 24" {...props}>
@@ -23,11 +47,9 @@ const ReactLiveScope = {
   ...React,
   ...Chakra,
   ...Formik,
-  ...MDIcons,
-  ...IOIcons,
-  ...FaIcons,
   ...Icons,
   ...Loaders,
+  ...reactIcons,
   StarIcon,
   FocusLock,
   Lorem,

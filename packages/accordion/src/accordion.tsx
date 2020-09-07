@@ -54,17 +54,17 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   ref,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
-  const _props = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
-  const { htmlProps, ...context } = useAccordion(_props)
+  const { htmlProps, ...context } = useAccordion(ownProps)
 
-  const _context = React.useMemo(
+  const ctx = React.useMemo(
     () => ({ ...context, reduceMotion: !!props.reduceMotion }),
     [context, props.reduceMotion],
   )
 
   return (
-    <AccordionProvider value={_context}>
+    <AccordionProvider value={ctx}>
       <StylesProvider value={styles}>
         <chakra.div
           ref={ref}
@@ -183,7 +183,7 @@ if (__DEV__) {
   AccordionButton.displayName = "AccordionButton"
 }
 
-export type AccordionPanelProps = DivProps
+export interface AccordionPanelProps extends DivProps {}
 
 /**
  * Accordion panel that holds the content for each accordion.
@@ -197,13 +197,13 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
     const { getPanelProps, isOpen } = useAccordionItemContext()
 
     // remove `hidden` prop, 'coz we're using height animation
-    const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
+    const panelProps = getPanelProps(props, ref)
 
     const _className = cx("chakra-accordion__panel", props.className)
     const styles = useStyles()
 
-    if (reduceMotion == true) {
-      panelProps.hidden = hidden
+    if (!reduceMotion) {
+      delete panelProps.hidden
     }
 
     const child = (
@@ -215,7 +215,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
       />
     )
 
-    if (reduceMotion == false) {
+    if (!reduceMotion) {
       return <Collapse isOpen={isOpen}>{child}</Collapse>
     }
 

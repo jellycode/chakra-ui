@@ -27,7 +27,7 @@ exports[`Select renders correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
-  background: #FFFFFF;
+  background: inherit;
   padding-right: 2rem;
 }
 
@@ -65,9 +65,9 @@ exports[`Select renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  z-index: 1;
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  z-index: unset;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-0[aria-invalid=true],

@@ -3,17 +3,16 @@ import { useControllableState, useFocusEffect, useIds } from "@chakra-ui/hooks"
 import {
   addItem,
   callAllHandlers,
+  createContext,
   createOnKeyDown,
-  Dict,
   getNextIndex,
   getPrevIndex,
   isArray,
   mergeRefs,
+  PropGetter,
   removeItem,
-  __DEV__,
-  createContext,
 } from "@chakra-ui/utils"
-import { Ref, ReactNode, useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import * as warn from "./warning"
 
 export type ExpandedIndex = number | number[]
@@ -39,10 +38,6 @@ export interface UseAccordionProps {
    * The callback invoked when accordion items are expanded or collapsed.
    */
   onChange?: (expandedIndex: ExpandedIndex) => void
-  /**
-   * The content of the accordion. Must be `AccordionItem`
-   */
-  children: ReactNode
 }
 
 /**
@@ -133,7 +128,7 @@ export function useAccordion(props: UseAccordionProps) {
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
 
-type AccordionContext = Omit<UseAccordionReturn, "children" | "htmlProps"> & {
+interface AccordionContext extends Omit<UseAccordionReturn, "htmlProps"> {
   reduceMotion: boolean
 }
 
@@ -262,8 +257,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     setFocusedIndex,
   ])
 
-  const getButtonProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getButtonProps: PropGetter<HTMLButtonElement> = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(buttonRef, ref),
       id: buttonId,
@@ -277,8 +272,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     [buttonId, isDisabled, isOpen, onClick, onFocus, onKeyDown, panelId],
   )
 
-  const getPanelProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getPanelProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref,
       role: "region",

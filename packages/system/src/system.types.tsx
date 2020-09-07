@@ -11,13 +11,7 @@ export interface ThemingProps {
   styleConfig?: Dict
 }
 
-interface ValidHTMLProps {
-  htmlWidth?: string | number
-  htmlHeight?: string | number
-  htmlSize?: string | number
-}
-
-export interface ChakraProps extends SystemProps, ValidHTMLProps {
+export interface ChakraProps extends SystemProps {
   /**
    * apply layer styles defined in `theme.layerStyles`
    */
@@ -50,6 +44,11 @@ export interface ChakraProps extends SystemProps, ValidHTMLProps {
    * @private
    */
   __css?: SystemStyleObject
+  /**
+   * Used to pass theme-aware style props.
+   * NB: This is the public API for user-land
+   */
+  sx?: SystemStyleObject
 }
 
 export type As = React.ElementType<any>

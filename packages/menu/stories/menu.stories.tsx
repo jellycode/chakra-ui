@@ -244,7 +244,7 @@ export const withMenuRadio = () => (
 
       <MenuDivider />
 
-      <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
+      <MenuOptionGroup defaultValue="val-1" title="Order" type="radio">
         <MenuItemOption value="val-1">Option 1</MenuItemOption>
         <MenuItemOption value="val-2">Option 2</MenuItemOption>
       </MenuOptionGroup>
@@ -390,5 +390,23 @@ export const WithinForm = () => {
         </Menu>
       </fieldset>
     </form>
+  )
+}
+
+export const GroupWithDivider = () => {
+  return (
+    <Menu>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList>
+        <MenuOptionGroup type="radio">
+          <MenuItemOption value="A">A</MenuItemOption>
+          <MenuItemOption value="B">B</MenuItemOption>
+          <MenuItemOption value="C">C</MenuItemOption>
+          <MenuDivider />
+          <MenuItemOption value="D">D</MenuItemOption>
+          <MenuItemOption value="E">E</MenuItemOption>
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
   )
 }
